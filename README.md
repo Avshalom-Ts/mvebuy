@@ -14,6 +14,8 @@ Multi-Vendor E-Commerce Platform with Next.js, React and Stripe Connect
 
 - [ShadCN UI](https://ui.shadcn.com/)
 
+- [Neobrutalism style](https://www.neobrutalism.dev/)
+
 ### Instalation
 
 - Created the project by specific version
