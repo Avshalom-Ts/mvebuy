@@ -19,6 +19,7 @@
 
 # production
 /build
+/docker/mongo-data
 
 # misc
 .DS_Store
