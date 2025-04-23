@@ -6,11 +6,11 @@ Multi-Vendor E-Commerce Platform with Next.js, React and Stripe Connect
 
 ## Thchnologies Used
 
-- [Bun as package manager](https://bun.sh/)
+- [Bun as package manager v1.2.10](https://bun.sh/)
 
-- [NextJs](https://nextjs.org/)
+- [NextJs v15.2.4](https://nextjs.org/)
 
-- [TailwingCSS](https://tailwindcss.com/)
+- [TailwingCSS v4](https://tailwindcss.com/)
 
 ### Instalation
 
