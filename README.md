@@ -18,9 +18,11 @@ Multi-Vendor E-Commerce Platform with Next.js, React and Stripe Connect
 
 - [MongoDB](https://www.mongodb.com/?msockid=0f9641a8f8c16fbb361f542bf9516ee6)
 
+- [Payload](https://payloadcms.com/)
+
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Avshalom-Ts/mvebuy?utm_source=oss&utm_medium=github&utm_campaign=Avshalom-Ts%2Fmvebuy&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
-### Instalation
+### FrontEnd Instalation
 
 - Created the project by specific version
 
@@ -37,6 +39,22 @@ bunx --bun shadcn@2.4.0-canary.17 init
 bunx --bun shadcn@2.4.0-canary.17 add button
 # Or for all components avaulable
 bunx --bun shadcn@2.4.0-canary.17 add --all
+```
+
+### BackEnd Instalation
+
+- Create the backend api with payload
+
+```bash
+bunx create-payload-app@3.33.0 --use-bun
+```
+
+#### .env file
+
+```text
+#Added by Payload
+DATABASE_URI=mongodb://127.0.0.1/mvebuy
+PAYLOAD_SECRET=80eb6afb5fd294d1eba6abbe
 ```
 
 ## Getting Started
