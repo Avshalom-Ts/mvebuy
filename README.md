@@ -53,8 +53,8 @@ bunx create-payload-app@3.33.0 --use-bun
 
 ```text
 #Added by Payload
-DATABASE_URI=mongodb://127.0.0.1/mvebuy
-PAYLOAD_SECRET=80eb6afb5fd294d1eba6abbe
+DATABASE_URI=mongodb://username:password@address:port/databaseName
+PAYLOAD_SECRET=string
 ```
 
 ## Getting Started
