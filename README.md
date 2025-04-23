@@ -16,6 +16,8 @@ Multi-Vendor E-Commerce Platform with Next.js, React and Stripe Connect
 
 - [Neobrutalism style](https://www.neobrutalism.dev/)
 
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Avshalom-Ts/mvebuy?utm_source=oss&utm_medium=github&utm_campaign=Avshalom-Ts%2Fmvebuy&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+
 ### Instalation
 
 - Created the project by specific version
