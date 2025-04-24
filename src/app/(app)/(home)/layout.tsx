@@ -24,7 +24,8 @@ const layout = async ({ children }: Props) => {
             parent:{
             exists: false
         }
-        }
+        },
+        sort: 'name',
     })
 
     const formatedData:CustomeCategory[] = data.docs.map((doc)=>({
