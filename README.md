@@ -57,7 +57,7 @@ DATABASE_URI=mongodb://username:password@address:port/databaseName
 PAYLOAD_SECRET=string
 ```
 
-## Getting Started
+#### Getting Started
 
 ```bash
 # Install dependencies
@@ -67,3 +67,14 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+#### Seeding the database with categories using bun(bun is crusial)
+
+Seed file:
+src/seed.ts
+
+Added script in the package.json to seed the db
+
+```bahs
+bun run db:seed
+```
