@@ -1,4 +1,6 @@
-FROM oven/bun AS base
+# Dockerfile for Next.js frontend
+ARG baseImage=oven/bun:1.2.10
+FROM ${baseImage} AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -55,6 +57,7 @@ ENV HOSTNAME="0.0.0.0"
 
 CMD ["bun", "server.js"]
 
-
-# Build the image with:
+# Image from dockerhub:
+# https://hub.docker.com/r/oven/bun
+# Build the image with (run from project root):
 # docker build -f docker/frontend/Dockerfile -t mvebuy-frontend:latest .
