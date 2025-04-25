@@ -1,8 +1,8 @@
 import { baseProcedure, createTRPCRouter } from "@/app/trpc/init";
 import { TRPCError } from "@trpc/server";
 import { headers as getHeaders, cookies as getCookies } from "next/headers";
-import { z } from "zod";
 import { AUTH_COOKIE } from "../constants";
+import { loginSchema, registerSchema } from "../schemas";
 
 export const authRouter = createTRPCRouter({
 
@@ -11,6 +11,7 @@ export const authRouter = createTRPCRouter({
 
         const session = await ctx.db.auth({ headers })
 
+        console.log("🚀 ~ session:baseProcedure.query ~ session:", session)
         return session
     }),
 
@@ -24,26 +25,28 @@ export const authRouter = createTRPCRouter({
     // Register procedure
     register: baseProcedure
         .input(
-            z.object({
-                email: z.string().email(),
-                password: z.string().min(3),
-                // [username].mvebuy.com
-                username: z
-                    .string()
-                    .min(3, 'Username must be at least 3 characters long')
-                    .max(63, 'Username must be at most 63 characters long')
-                    .regex(
-                        /^[a-z0-9][a-z0-9-]*[a-z0-9]$/,
-                        'Username can only contain lowercase letters, numbers and hypehns. It must start and end with a letter or number.',
-                    )
-                    .refine(
-                        (val) => !val.includes('--'),
-                        'Username cannot contain consecutive hyphens',
-                    )
-                    .transform((val) => val.toLowerCase()),
-            })
+            registerSchema
         )
         .mutation(async ({ ctx, input }) => {
+            const existingData = await ctx.db.find({
+                collection: 'users',
+                limit: 1,
+                where: {
+                    username: {
+                        equals: input.username,
+                    }
+                }
+            })
+
+            const existingUser = existingData.docs[0]
+
+            if (existingUser) {
+                throw new TRPCError({
+                    code: 'CONFLICT',
+                    message: 'Username already exists',
+                })
+            }
+
             await ctx.db.create({
                 collection: 'users',
                 data: {
@@ -85,10 +88,7 @@ export const authRouter = createTRPCRouter({
     // Login procedure
     login: baseProcedure
         .input(
-            z.object({
-                email: z.string().email(),
-                password: z.string()
-            })
+            loginSchema
         )
         .mutation(async ({ ctx, input }) => {
             const data = await ctx.db.login({
