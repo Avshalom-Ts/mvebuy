@@ -9,18 +9,15 @@ export const authRouter = createTRPCRouter({
     session: baseProcedure.query(async ({ ctx }) => {
         const headers = await getHeaders()
 
-        const session = await ctx.db.auth({ headers })
+        const session = ctx.db.auth({ headers })
 
-        console.log("🚀 ~ session:baseProcedure.query ~ session:", session)
         return session
     }),
 
     // Logout procedure
     logout: baseProcedure.mutation(async () => {
         const cookies = await getCookies()
-        cookies.delete({
-            name: AUTH_COOKIE,
-        })
+        cookies.delete(AUTH_COOKIE)
     }),
     // Register procedure
     register: baseProcedure
@@ -32,9 +29,8 @@ export const authRouter = createTRPCRouter({
                 collection: 'users',
                 limit: 1,
                 where: {
-                    username: {
-                        equals: input.username,
-                    }
+                    username: { equals: input.username },
+                    email: { equals: input.email }
                 }
             })
 
