@@ -20,6 +20,8 @@ Multi-Vendor E-Commerce Platform with Next.js, React and Stripe Connect
 
 - [Payload](https://payloadcms.com/)
 
+- [TRPC](https://trpc.io/)
+
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Avshalom-Ts/mvebuy?utm_source=oss&utm_medium=github&utm_campaign=Avshalom-Ts%2Fmvebuy&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
 ### FrontEnd Instalation
@@ -39,6 +41,12 @@ bunx --bun shadcn@2.4.0-canary.17 init
 bunx --bun shadcn@2.4.0-canary.17 add button
 # Or for all components avaulable
 bunx --bun shadcn@2.4.0-canary.17 add --all
+# Add Trpc as tanstack react query
+# First check packages versions (run in unix system)
+for pkg in "@trpc/server" "@trpc/client" "@trpc/tanstack-react-query" "@tanstack/react-query@latest" "zod" "client-only" "server-only"; do echo "$pkg: $(npm show $pkg version)"; done
+# Install packages for trpc by versions
+bun add @trpc/server@11.0.3 @trpc/client@11.0.3 @trpc/tanstack-react-query@11.0.3 @tanstack/react-query@5.72.1 zod@3.24.2 client-only@0.0.1 server-only@0.0.1
+bun add superjson
 ```
 
 ### BackEnd Instalation
@@ -54,7 +62,10 @@ bunx create-payload-app@3.33.0 --use-bun
 ```text
 #Added by Payload
 DATABASE_URI=mongodb://username:password@address:port/databaseName
-PAYLOAD_SECRET=string
+PAYLOAD_SECRET=YOUR_SECRET_HERE
+
+# Global settings
+NEXT_PUBLIC_APP_URL="http://address:port"
 ```
 
 #### Getting Started

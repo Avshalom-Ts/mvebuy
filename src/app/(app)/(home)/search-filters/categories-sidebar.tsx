@@ -1,21 +1,25 @@
-import { CustomeCategory } from "../types"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useState } from "react";
 import { ChevronRightIcon, ChevronsLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTRPC } from "@/app/trpc/client";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { CategoriesGetManyOutput, CategoriesGetManyOutputSingle } from "@/modules/categories/types";
 
 interface Props {
     open: boolean
     onOpenChange: (open: boolean) => void
-    data: CustomeCategory[] // TODO: Remove this later
 }
 
-export const CategoriesSidebar = ({open,onOpenChange,data}:Props) => {
+export const CategoriesSidebar = ({open,onOpenChange}:Props) => {
+    const trpc = useTRPC()
+    const { data } = useSuspenseQuery(trpc.categories.getMany.queryOptions())
+    
     const router = useRouter()
 
-    const [parentCategories, setParentCategories] = useState<CustomeCategory[]| null>(null)
-    const [selectedCategory, setSelectedCategory] = useState<CustomeCategory | null>(null)
+    const [parentCategories, setParentCategories] = useState<CategoriesGetManyOutput| null>(null)
+    const [selectedCategory, setSelectedCategory] = useState<CategoriesGetManyOutputSingle | null>(null)
 
     // If we have parent categories, Show those, oterewise show the root categories
     const currentCategories = parentCategories ?? data ?? [];
@@ -26,9 +30,9 @@ export const CategoriesSidebar = ({open,onOpenChange,data}:Props) => {
         onOpenChange(open)
     }
 
-    const handleCategoryClick = (category: CustomeCategory) => {
+    const handleCategoryClick = (category: CategoriesGetManyOutputSingle) => {
         if (category.subcategories && category.subcategories.length > 0) {
-            setParentCategories(category.subcategories as CustomeCategory[])
+            setParentCategories(category.subcategories as CategoriesGetManyOutput)
             setSelectedCategory(category)
         } else {
             // This is a leaf category (no subcategories)
