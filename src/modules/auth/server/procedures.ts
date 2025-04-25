@@ -1,8 +1,8 @@
 import { baseProcedure, createTRPCRouter } from "@/app/trpc/init";
 import { TRPCError } from "@trpc/server";
-import { headers as getHeaders, cookies as getCookies } from "next/headers";
-import { AUTH_COOKIE } from "../constants";
+import { headers as getHeaders } from "next/headers";
 import { loginSchema, registerSchema } from "../schemas";
+import { generateAuthCookie } from "../utils";
 
 export const authRouter = createTRPCRouter({
 
@@ -12,12 +12,6 @@ export const authRouter = createTRPCRouter({
         const session = ctx.db.auth({ headers })
 
         return session
-    }),
-
-    // Logout procedure
-    logout: baseProcedure.mutation(async () => {
-        const cookies = await getCookies()
-        cookies.delete(AUTH_COOKIE)
     }),
     // Register procedure
     register: baseProcedure
@@ -67,17 +61,9 @@ export const authRouter = createTRPCRouter({
                 })
             }
 
-            const cookies = await getCookies()
-            cookies.set({
-                name: AUTH_COOKIE,
+            await generateAuthCookie({
+                prefix: ctx.db.config.cookiePrefix,
                 value: data.token,
-                httpOnly: true,
-                path: '/',
-                // TODO: Ensure cross-domain cookies sharing
-                // domain: 'mvebuy.com', Initial cookie
-                // antonio.mvebuy.com // cookie does not exist here
-                // sameSite: 'none'
-                // domain: 'mvebuy.com',
             })
 
         }),
@@ -102,17 +88,9 @@ export const authRouter = createTRPCRouter({
                 })
             }
 
-            const cookies = await getCookies()
-            cookies.set({
-                name: AUTH_COOKIE,
+            await generateAuthCookie({
+                prefix: ctx.db.config.cookiePrefix,
                 value: data.token,
-                httpOnly: true,
-                path: '/',
-                // TODO: Ensure cross-domain cookies sharing
-                // domain: 'mvebuy.com', Initial cookie
-                // antonio.mvebuy.com // cookie does not exist here
-                // sameSite: 'none'
-                // domain: 'mvebuy.com',
             })
 
             return data;
