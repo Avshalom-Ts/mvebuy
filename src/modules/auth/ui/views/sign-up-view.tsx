@@ -88,7 +88,7 @@ export const SignUpView = () => {
                                 </Link>
                             </Button>
                         </div>
-                        <h1 className="text-4xl font-medium">
+                        <h1 className="text-4xl font-medium text-center">
                             Join over 1720 creators earning money with MVEBUY.
                         </h1>
                         <FormField

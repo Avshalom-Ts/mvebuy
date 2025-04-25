@@ -75,13 +75,13 @@ export const SignInView = () => {
                             size='sm'
                             className='text-base border-none underline'
                             >
-                                <Link prefetch href='/sign-in'>
-                                    Sign In
+                                <Link prefetch href='/sign-up'>
+                                    Sign Up
                                 </Link>
                             </Button>
                         </div>
-                        <h1 className="text-4xl font-medium">
-                            Join over 1720 creators earning money with MVEBUY.
+                        <h1 className="text-4xl font-medium text-center">
+                            Welcome back to MVEBUY.
                         </h1>
                         <FormField
                             name="email"
