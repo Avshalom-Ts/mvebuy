@@ -12,6 +12,8 @@ export const productsRouter = createTRPCRouter({
             depth: 1, // Populate "category" field and "image" field
         })
 
+        // Artificial delay to simulate a slow network
+        // await new Promise((resolve) => setTimeout(resolve, 5000))
 
         return data
     })
