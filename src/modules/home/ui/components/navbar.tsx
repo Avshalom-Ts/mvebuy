@@ -62,7 +62,7 @@ export const Navbar = () => {
         </span>
         </Link>
         
-        <NavbarSidebar 
+        <NavbarSidebar
         items={NavbarItems}
         open={isSidebarOpen}
         onOpenChange={setIsSidebarOpen}
