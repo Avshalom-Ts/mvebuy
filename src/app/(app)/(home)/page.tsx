@@ -4,6 +4,11 @@ import { useTRPC } from "@/app/trpc/client"
 import { useQuery } from "@tanstack/react-query"
 
 
+/**
+ * Displays the current authenticated user's session data as formatted JSON.
+ *
+ * Fetches session information using TRPC and React Query, and renders the `user` object from the session data.
+ */
 export default function Home () {
   const trpc = useTRPC()
   const { data } = useQuery(trpc.auth.session.queryOptions())
