@@ -22,6 +22,8 @@ Multi-Vendor E-Commerce Platform with Next.js, React and Stripe Connect
 
 - [TRPC](https://trpc.io/)
 
+- [Nuqs](https://nuqs.47ng.com/)
+
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Avshalom-Ts/mvebuy?utm_source=oss&utm_medium=github&utm_campaign=Avshalom-Ts%2Fmvebuy&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
 ### FrontEnd Instalation
@@ -47,6 +49,9 @@ for pkg in "@trpc/server" "@trpc/client" "@trpc/tanstack-react-query" "@tanstack
 # Install packages for trpc by versions
 bun add @trpc/server@11.0.3 @trpc/client@11.0.3 @trpc/tanstack-react-query@11.0.3 @tanstack/react-query@5.72.1 zod@3.24.2 client-only@0.0.1 server-only@0.0.1
 bun add superjson
+# 
+bun add nuqs@2.4.1
+
 ```
 
 ### BackEnd Instalation
