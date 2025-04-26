@@ -5,9 +5,6 @@ import { z } from "zod";
 
 
 export const productsRouter = createTRPCRouter({
-
-
-
     getMany: baseProcedure
         .input(
             z.object({
@@ -46,9 +43,9 @@ export const productsRouter = createTRPCRouter({
                     subcategoriesSlugs.push(
                         ...parentCategory.subcategories.map((subcategory) => subcategory.slug)
                     )
-                }
-                where["category.slug"] = {
-                    in: [parentCategory.slug, ...subcategoriesSlugs],
+                    where["category.slug"] = {
+                        in: [parentCategory.slug, ...subcategoriesSlugs],
+                    }
                 }
             }
 
