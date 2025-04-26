@@ -7,12 +7,15 @@ import { cn } from "@/lib/utils";
 import { ListFilterIcon } from "lucide-react";
 import { CategoriesSidebar } from "./categories-sidebar";
 import { CategoriesGetManyOutput } from "@/modules/categories/types";
+import { useParams } from "next/navigation";
 
 interface Props{
     data:CategoriesGetManyOutput;
 }
 
 export const Categories = ({data}:Props) => {
+    const params = useParams()
+    
     const containerRef = useRef<HTMLDivElement>(null)
     const measureRef = useRef<HTMLDivElement>(null)
     const viewAllRef = useRef<HTMLDivElement>(null)
@@ -21,8 +24,8 @@ export const Categories = ({data}:Props) => {
     const [isAnyHovered, setIsAnyHovered] = useState(false)
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-    // Mock the active category
-    const activeCategory = 'all'
+    const categoryParam = params.category as string | undefined 
+    const activeCategory = categoryParam || 'all'
 
     const activeCategoryIndex = data.findIndex((category) => category.slug === activeCategory)
     const isActiveCategoryHidden = activeCategoryIndex >= visibleCount && activeCategoryIndex !== -1 
