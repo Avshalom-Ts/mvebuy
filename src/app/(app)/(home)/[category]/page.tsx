@@ -1,3 +1,4 @@
+import { caller } from "@/app/trpc/server";
 
 interface Props{
     params:Promise< {
@@ -7,10 +8,14 @@ interface Props{
 
 const page = async ({params}:Props) => {
   const {category} = await params;
+
+  const products = await caller.products.getMany();
   
     return (
     <div>
       Category: {category}
+      <br />
+      Products: {JSON.stringify(products)}
     </div>
   )
 }
