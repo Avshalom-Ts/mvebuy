@@ -48,7 +48,7 @@ export const ProductFilters = () => {
             return value !== ""
         }
 
-        return value !== null && value !== undefined
+        return value !== null
     })
 
     const onClear = () => {

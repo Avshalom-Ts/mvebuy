@@ -15,7 +15,7 @@ export const TagsFilter = ({ value, onChange }: TagsFilterProps) => {
     
     const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(trpc.tags.getMany.infiniteQueryOptions(
         {
-        limit: DEFAULT_LIMIT
+            limit: DEFAULT_LIMIT
         },
         {
             getNextPageParam: (lastPage) => {
@@ -27,7 +27,7 @@ export const TagsFilter = ({ value, onChange }: TagsFilterProps) => {
     
     const onClick = (tag: string) =>{
         if(value?.includes(tag)){
-            onChange(value?.filter((t)=> t !== tag))
+            onChange(value?.filter((t)=> t !== tag) || [])
         }else {
             onChange([...(value || []), tag])
         }

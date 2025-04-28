@@ -21,8 +21,7 @@ const page = async ({ params, searchParams }:Props) => {
 
   void queryClient.prefetchQuery(trpc.products.getMany.queryOptions({
     category,
-    minPrice: filters.minPrice ? parseFloat(filters.minPrice) : null,
-    maxPrice: filters.maxPrice ? parseFloat(filters.maxPrice) : null,
+    ...{filters}
   }));
   
     return (
